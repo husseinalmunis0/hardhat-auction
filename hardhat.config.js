@@ -6,5 +6,18 @@ require("@nomiclabs/hardhat-waffle");
 require("./tasks/faucet");
 
 module.exports = {
-  solidity: "0.7.3"
+  solidity: "0.7.3",
+  defaultNetwork: "ganache",
+  networks: {
+    localhost: {
+      url: "http://127.0.0.1:7545"
+    },
+    ganache: {
+      url: "http://localhost:7545",
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "*",
+    },
+  },
+
 };

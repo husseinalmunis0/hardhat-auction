@@ -22,14 +22,19 @@ async function main() {
   const Token = await ethers.getContractFactory("Token");
   const token = await Token.deploy();
   await token.deployed();
-
+  const Auctions = await ethers.getContractFactory("Auctions");
+  const auctions = await Auctions.deploy();
+  await auctions.deployed();
+  const MyAuction = await ethers.getContractFactory("MyAuction");
+  const myAuction = await MyAuction.deploy();
+  await myAuction.deployed();
   console.log("Token address:", token.address);
 
   // We also save the contract's artifacts and address in the frontend directory
-  saveFrontendFiles(token);
+  saveFrontendFiles(token,auctions,myAuction);
 }
 
-function saveFrontendFiles(token) {
+function saveFrontendFiles(token,auctions,myAuction) {
   const fs = require("fs");
   const contractsDir = __dirname + "/../frontend/src/contracts";
 
@@ -39,7 +44,7 @@ function saveFrontendFiles(token) {
 
   fs.writeFileSync(
     contractsDir + "/contract-address.json",
-    JSON.stringify({ Token: token.address }, undefined, 2)
+    JSON.stringify({ Token: token.address,Auctions: auctions.address,MyAuction:myAuction.address }, undefined, 2)
   );
 
   const TokenArtifact = artifacts.readArtifactSync("Token");
@@ -48,6 +53,19 @@ function saveFrontendFiles(token) {
     contractsDir + "/Token.json",
     JSON.stringify(TokenArtifact, null, 2)
   );
+
+  const AuctionsArtifact = artifacts.readArtifactSync("Auctions");
+  fs.writeFileSync(
+      contractsDir + "/Auctions.json",
+      JSON.stringify(AuctionsArtifact, null, 2)
+  );
+
+  const MyAuctionArtifact = artifacts.readArtifactSync("MyAuction");
+  fs.writeFileSync(
+      contractsDir + "/MyAuction.json",
+      JSON.stringify(MyAuctionArtifact, null, 2)
+  );
+
 }
 
 main()
