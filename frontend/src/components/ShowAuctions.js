@@ -47,13 +47,13 @@ function ShowAuctions() {
                         let AucionsView ="<tr><td>"+ await auction.owner()+"</td>";
                         AucionsView+= "<td>" + await auction.objectName()+"</td>"
                         AucionsView+= "<td>" + await  auction.objectDescription()+"</td>";
-                        let started = await auction.started;
-                        let ended   = await auction.ended;
-                        let status="";
-                        if(!started) status="not started";
-                        else if(!ended) status="in action";
-                        else status="ended"
-                        AucionsView+= "<td>"+status+"</td>";
+                        // let started = await auction.started;
+                        // let ended   = await auction.ended;
+                        // let status="";
+                        // if(!started) status="not started";
+                        // else if(!ended) status="in action";
+                        // else status="ended"
+                        // AucionsView+= "<td>"+status+"</td>";
                         AucionsView+="<td>";
                         // <StartButton />
                         AucionsView+="</td>";
@@ -79,7 +79,7 @@ function ShowAuctions() {
                 <th>owner</th>
                 <th>name</th>
                 <th>description</th>
-                <th>status</th>
+                {/*<th>status</th>*/}
             </tr>
             </thead>
             <tbody id="myAuctionsbody">
