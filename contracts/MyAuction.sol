@@ -30,7 +30,6 @@ contract MyAuction {
     bool started;
     //auction end time
     uint auctionEndTime;
-
     // Set to true at the end, disallows any change.
     // By default initialized to `false`.
     bool ended;
@@ -139,6 +138,8 @@ contract MyAuction {
             started=true;
             highestBid=startingBid;
             emit AuctionStarted(participants,startingBid);
+        }else{
+            revert ("starting fialed only owner can start");
         }
     }
 

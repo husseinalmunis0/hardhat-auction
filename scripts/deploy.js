@@ -56,7 +56,7 @@ function saveFrontendFiles(token,auctions,myAuction) {
 
   const AuctionsArtifact = artifacts.readArtifactSync("Auctions");
   fs.writeFileSync(
-      contractsDir + "/Auctions.json",
+      contractsDir + "/CreateAuction.json",
       JSON.stringify(AuctionsArtifact, null, 2)
   );
 

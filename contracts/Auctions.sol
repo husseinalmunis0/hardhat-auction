@@ -2,9 +2,9 @@ pragma solidity ^0.7.0;
 import { MyAuction } from './MyAuction.sol';
 
 contract Auctions {
-    MyAuction[] public auctions;
+    address [] public auctions;
 
-    event AuctionCreated(MyAuction auctionContract, address owner, uint numAuctions, MyAuction[] allAuctions);
+    event AuctionCreated(address auctionContract, address owner, uint numAuctions, address[] allAuctions);
 
     function createAuction (
         uint _startingBid,
@@ -21,15 +21,15 @@ contract Auctions {
         newAuction.setObjectName(_objectName);
         newAuction.setObjectDescription(_objectDescription);
         newAuction.setAuctionStartTime(_auctionStartTime);
-        auctions.push(newAuction);
-        emit AuctionCreated(newAuction, msg.sender, auctions.length, auctions);
+        auctions.push(address (newAuction));
+        emit AuctionCreated(address (newAuction), msg.sender, auctions.length, auctions);
     }
 
-    function allAuctions() public returns ( MyAuction[] memory) {
+    function allAuctions() public returns ( address[] memory) {
         return auctions;
     }
 
-    function getAuction(uint index) public returns (MyAuction){
+    function getAuction(uint index) public returns (address){
         return auctions[index];
     }
 }
